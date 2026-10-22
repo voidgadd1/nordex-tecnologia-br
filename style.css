@@ -1,0 +1,194 @@
+/* ==========================================================
+   NORDEX TECNOLOGIA — style.css
+   1. Variáveis  2. Base  3. Componentes  4. Cabeçalho
+   5. Hero  6. Serviços  7. Sobre  8. Contato  9. Rodapé
+   10. Responsivo  11. Movimento reduzido
+   ========================================================== */
+
+/* 1. Variáveis */
+:root {
+  --bg: #0B0D10;
+  --bg-alt: #15191F;
+  --accent: #FF6A00;
+  --text: #F5F5F5;
+  --muted: #A1A7B3;
+  --line: rgba(245, 245, 245, 0.1);
+  --radius: 10px;
+  --header-h: 72px;
+  --font: "Manrope", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 2. Base */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.container { width: min(1120px, 100% - 3rem); margin-inline: auto; }
+
+.skip-link {
+  position: absolute; left: 1rem; top: -4rem; z-index: 100;
+  background: var(--accent); color: var(--bg);
+  padding: .6rem 1rem; border-radius: 6px; font-weight: 700;
+}
+.skip-link:focus { top: 1rem; }
+
+.section { padding: clamp(4.5rem, 10vw, 8rem) 0; }
+.section-head { margin-bottom: 3rem; max-width: 36rem; }
+.section-sub { color: var(--muted); font-size: 1.125rem; max-width: 34rem; }
+
+h2 { font-size: clamp(1.875rem, 4vw, 2.75rem); line-height: 1.15; letter-spacing: -0.02em; font-weight: 800; }
+h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; }
+
+/* 3. Botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: .75rem 1.5rem;
+  border: 1px solid transparent; border-radius: 8px;
+  font: inherit; font-weight: 700; cursor: pointer;
+  transition: background-color .2s, border-color .2s, color .2s, transform .2s;
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { background: #ff7f26; transform: translateY(-2px); }
+.btn-ghost { border-color: var(--line); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.btn-small { min-height: 42px; padding: .5rem 1.15rem; font-size: .9375rem; }
+.btn-large { min-height: 56px; padding: 1rem 2rem; font-size: 1.0625rem; margin-top: 2rem; }
+
+/* 4. Cabeçalho */
+.site-header {
+  position: sticky; top: 0; z-index: 50; height: var(--header-h);
+  background: rgba(11, 13, 16, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+
+.logo { font-weight: 800; font-size: 1.25rem; letter-spacing: .22em; }
+.logo::after { content: ""; display: inline-block; width: .4rem; height: .4rem; margin-left: .2rem; background: var(--accent); }
+
+.main-nav { display: flex; align-items: center; gap: 2rem; }
+.main-nav ul { display: flex; gap: 2rem; }
+.main-nav ul a { color: var(--muted); font-weight: 500; font-size: .9375rem; padding: .5rem 0; transition: color .2s; }
+.main-nav ul a:hover { color: var(--text); }
+
+.menu-toggle {
+  display: none; width: 48px; height: 48px; padding: 0;
+  background: transparent; border: 1px solid var(--line); border-radius: 8px;
+  cursor: pointer; position: relative;
+}
+.menu-toggle-bar, .menu-toggle-bar::before, .menu-toggle-bar::after {
+  content: ""; position: absolute; left: 13px; width: 20px; height: 2px;
+  background: var(--text); transition: transform .2s, opacity .2s;
+}
+.menu-toggle-bar { top: 22px; }
+.menu-toggle-bar::before { top: -6px; left: 0; }
+.menu-toggle-bar::after { top: 6px; left: 0; }
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar { background: transparent; }
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar::before { transform: translateY(6px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar::after { transform: translateY(-6px) rotate(-45deg); }
+
+/* 5. Hero */
+.hero { padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(4rem, 9vw, 7rem); overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center; }
+
+.eyebrow { color: var(--accent); font-size: .8125rem; font-weight: 700; letter-spacing: .18em; margin-bottom: 1.5rem; }
+.hero h1 { font-size: clamp(2.5rem, 6.2vw, 4.5rem); line-height: 1.05; letter-spacing: -0.035em; font-weight: 800; max-width: 12ch; }
+.lead { margin-top: 1.75rem; color: var(--muted); font-size: clamp(1.0625rem, 2vw, 1.25rem); max-width: 34rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
+
+/* Elemento gráfico abstrato (somente CSS) */
+.hero-art { position: relative; width: 100%; max-width: 420px; aspect-ratio: 1; justify-self: center; }
+.art-frame { position: absolute; border: 1px solid var(--line); }
+.art-frame-1 { inset: 0; }
+.art-frame-2 { inset: 14%; border-color: rgba(245, 245, 245, .16); }
+.art-frame-3 { inset: 28%; border-color: var(--accent); transform: rotate(45deg); animation: frame-in 1.2s cubic-bezier(.2, .7, .2, 1) both; }
+.art-line { position: absolute; background: var(--line); }
+.art-line-h { left: -8%; right: -8%; top: 50%; height: 1px; }
+.art-line-v { top: -8%; bottom: -8%; left: 50%; width: 1px; }
+.art-node { position: absolute; top: 50%; left: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; background: var(--accent); box-shadow: 0 0 0 8px rgba(255, 106, 0, .14); }
+
+@keyframes frame-in { from { transform: rotate(0deg) scale(.6); opacity: 0; } to { transform: rotate(45deg) scale(1); opacity: 1; } }
+
+/* 6. Serviços */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.card {
+  background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 2rem; border-top: 2px solid var(--accent);
+  transition: border-color .25s, transform .25s;
+}
+.card:hover { transform: translateY(-4px); border-color: rgba(255, 106, 0, .5); }
+.card-icon { color: var(--accent); margin-bottom: 1.5rem; }
+.card h3 { margin-bottom: .75rem; }
+.card p { color: var(--muted); }
+
+/* 7. Sobre */
+.about { border-top: 1px solid var(--line); }
+.about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+.about h2 { max-width: 14ch; }
+.about-text { display: grid; gap: 1.25rem; color: var(--muted); font-size: 1.125rem; max-width: 36rem; }
+.about-text strong { color: var(--text); font-weight: 700; }
+
+/* 8. Contato */
+.contact { background: var(--bg-alt); border-block: 1px solid var(--line); }
+.contact-inner { max-width: 44rem; }
+.contact h2 { margin-bottom: 1.25rem; }
+
+/* 9. Rodapé */
+.site-footer { padding: 3rem 0; }
+.footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem 2rem; align-items: start; }
+.footer-tagline { color: var(--muted); margin-top: .5rem; font-size: .9375rem; }
+.footer-link { color: var(--text); font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--accent); }
+.footer-link:hover { color: var(--accent); }
+.footer-copy { grid-column: 1 / -1; color: var(--muted); font-size: .875rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+
+/* 10. Responsivo */
+@media (max-width: 900px) {
+  .cards { grid-template-columns: 1fr; }
+  .hero-grid, .about-grid { grid-template-columns: 1fr; }
+  .hero-art { max-width: 280px; justify-self: start; order: -1; }
+  .hero h1 { max-width: 14ch; }
+}
+
+@media (max-width: 760px) {
+  .menu-toggle { display: block; }
+  .main-nav {
+    position: absolute; top: var(--header-h); left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 1rem;
+    padding: 1rem 1.5rem 1.5rem;
+    background: var(--bg-alt); border-bottom: 1px solid var(--line);
+    display: none;
+  }
+  .main-nav.is-open { display: flex; }
+  .main-nav ul { flex-direction: column; gap: 0; }
+  .main-nav ul a { display: block; padding: .9rem 0; font-size: 1.0625rem; border-bottom: 1px solid var(--line); }
+  .main-nav .btn { width: 100%; }
+}
+
+@media (max-width: 520px) {
+  .container { width: min(1120px, 100% - 2.5rem); }
+  .hero-actions .btn { width: 100%; }
+  .btn-large { width: 100%; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+/* 11. Movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
